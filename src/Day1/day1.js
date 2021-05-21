@@ -11,6 +11,9 @@ for (let i = 0; i < input.length; i++) {
         for (let k = 2; k < input.length; k++) {
             var possible = input[i] + input[j] + input[k];
             console.log(`${input[i]} + ${input[j]} + ${input[k]} = ${possible}`);
+            if (possible > target) {
+                break;
+            }
             if (target == possible) {
                 console.log(`Values are ${input[i]}, ${input[j]}, and ${input[k]}!`);
                 var solution = input[i] * input[j] * input[k];
