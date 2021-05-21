@@ -8,7 +8,13 @@ var input = fs.readFileSync('./input.txt', 'utf8')
 
 for (let i = 0; i < input.length; i++) {
     for (let j = 1; j < input.length; j++) {
+        if (areSameIndices(i, j)){
+            continue;
+        }
         for (let k = 2; k < input.length; k++) {
+            if (areSameIndices(i, k) || areSameIndices(j, k)){
+                continue;
+            }
             var possible = input[i] + input[j] + input[k];
             console.log(`${input[i]} + ${input[j]} + ${input[k]} = ${possible}`);
             if (possible > target) {
@@ -24,6 +30,9 @@ for (let i = 0; i < input.length; i++) {
     }
 }
 
+function areSameIndices(i, j) {
+    return i === j;
+}
 // possible optimisations
 // - if the result is greater than 2020, skip over the rest of the `k` loop
 // - don't add the same value
