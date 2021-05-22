@@ -24,15 +24,15 @@ test("Should generate correct x value", () => {
 
 test("Should get correct row", () => {
     var rows = ["AAAA", "BBBB", "CCCC"];
-    var expectedY = 3;
-    expect(Day3.getYRowValues(rows, expectedY))
-        .toBe(['C', 'C', 'C', 'C']);
+    var expectedY = 2;
+    expect(Day3.getRowValues(rows, expectedY))
+        .toStrictEqual(['C', 'C', 'C', 'C']);
 });
 
 test("Should get correct location value", () => {
     var rows = ["ABCD", "EFGH", "IJKL"];
-    var expectedX = 2;
-    var expectedY = 3;
+    var expectedX = 1;
+    var expectedY = 2;
     expect(Day3.getLocationValues(rows, expectedX, expectedY))
         .toBe('J');
 });
