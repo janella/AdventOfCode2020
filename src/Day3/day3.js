@@ -26,32 +26,30 @@ class Day3 {
     }
 
     static getXPosition(xMove, numPosition) {
-        // xMove * numPosition (eg, the third x location)
+        return xMove * numPosition;
     }
 
     static getYPosition(yMove, numPosition) {
-        // yMove * numPosition (eg, the third y location)
+        return yMove * numPosition;
     }
 
     static getLocationValues(rows, xValue, yValue){
-        // row = getYRowValues(rows, yValue)
-        // getXLocationValue(row, xValue)
+        var row = this.getRowValues(rows, yValue);
+        return this.getXLocationValue(row, xValue);
     }
 
-    static getYRowValues(rows, yValue) {
-        // splitRow = rows[yValue].split('')
-        // return splitRow
+    static getRowValues(rows, yValue) {
+        var splitRow = rows[yValue].split('');
+        return splitRow;
     }
 
     static getXLocationValue(row, xValue) {
-        // get row index
-        // location = splitRow[rowIndex]
+        var rowIndex = this.getRowIndex(row.length, xValue);
+        return row[rowIndex];
     }
 
     static getRowIndex(rowLength, xValue) {
-        // expected x value
-        // rowIndex = x % row.length
-        // return rowIndex
+        return xValue % rowLength;
     }
 
     static isTree(value) {
