@@ -1,9 +1,6 @@
 const fs = require('fs');
 class Day3 {
-    static xMove = 3;
-    static yMove = 1;
-
-    static solve() {
+    static solve(xMove, yMove) {
         var inputRows = fs.readFileSync('./input.txt', 'utf8')
             .split('\r\n');
         var numRows = inputRows.length;
@@ -11,18 +8,19 @@ class Day3 {
 
         var numTrees = 0;
         
-        var x = Day3.xMove;
-        var y = Day3.yMove;
+        var x = xMove;
+        var y = yMove;
         while (y < numRows) {
             var locationValue = this.getLocationValue(inputRows, x, y);
             console.log(`Location (${x}, ${y}): ${locationValue}`);
             if (this.isTree(locationValue)) {
                 numTrees++;
             }
-            x = x + Day3.xMove;
-            y = y + Day3.yMove;
+            x = x + xMove;
+            y = y + yMove;
         }
         console.log(`Number of trees found: ${numTrees}`);
+        return numTrees;
     }
 
     static getLocationValue(rows, xValue, yValue){
