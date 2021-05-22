@@ -1,18 +1,15 @@
-const fs = require('fs');
 class Day3 {
-    static solve(xMove, yMove) {
-        var inputRows = fs.readFileSync('./input.txt', 'utf8')
-            .split('\r\n');
-        var numRows = inputRows.length;
-        console.log(`Number of rows: ${numRows}`);
+    constructor(rows) {
+        this.inputRows = rows;
+    }
 
+    solve(xMove, yMove) {
+        var numRows = this.inputRows.length;
         var numTrees = 0;
-        
         var x = xMove;
         var y = yMove;
         while (y < numRows) {
-            var locationValue = this.getLocationValue(inputRows, x, y);
-            console.log(`Location (${x}, ${y}): ${locationValue}`);
+            var locationValue = this.getLocationValue(this.inputRows, x, y);
             if (this.isTree(locationValue)) {
                 numTrees++;
             }
@@ -23,26 +20,26 @@ class Day3 {
         return numTrees;
     }
 
-    static getLocationValue(rows, xValue, yValue){
+    getLocationValue(rows, xValue, yValue) {
         var row = this.getRowValues(rows, yValue);
         return this.getXLocationValue(row, xValue);
     }
 
-    static getRowValues(rows, yValue) {
+    getRowValues(rows, yValue) {
         var splitRow = rows[yValue].split('');
         return splitRow;
     }
 
-    static getXLocationValue(row, xValue) {
+    getXLocationValue(row, xValue) {
         var rowIndex = this.getRowIndex(row.length, xValue);
         return row[rowIndex];
     }
 
-    static getRowIndex(rowLength, xValue) {
+    getRowIndex(rowLength, xValue) {
         return xValue % rowLength;
     }
 
-    static isTree(value) {
+    isTree(value) {
         return value === '#';
     }
 }
