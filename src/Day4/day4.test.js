@@ -3,29 +3,29 @@ const Passport = require("./Passport");
 var sut = new Day4();
 
 test("Should split empty lines", () => {
-    var rawInput = "A\r\nBC\r\n\r\nDE\r\nF"
+    var rawInput = "A\r\nBC\r\n\r\nD\r\nE\r\nF"
     var result = sut.readAndSplitInput(rawInput);
     expect(result.length).toBe(2);
     expect(result[0]).toBe("A BC");
-    expect(result[1]).toBe("DE F");
+    expect(result[1]).toBe("D E F");
 });
 
 test("Should build passport with byr", () => {
     var rawInput = "byr:1987"
     var result = sut.buildPassport(rawInput);
-    expect(result.byr).toBe(1987);
+    expect(result.byr).toBe("1987");
 });
 
 test("Should build passport with iyr", () => {
     var rawInput = "iyr:2020"
     var result = sut.buildPassport(rawInput);
-    expect(result.iyr).toBe(2020);
+    expect(result.iyr).toBe("2020");
 });
 
 test("Should build passport with eyr", () => {
     var rawInput = "eyr:2029"
     var result = sut.buildPassport(rawInput);
-    expect(result.byr).toBe(2029);
+    expect(result.eyr).toBe("2029");
 });
 
 test("Should build passport with hgt", () => {
@@ -49,20 +49,20 @@ test("Should build passport with ecl", () => {
 test("Should build passport with pid", () => {
     var rawInput = "pid:65498798765"
     var result = sut.buildPassport(rawInput);
-    expect(result.pid).toBe(65498798765);
+    expect(result.pid).toBe("65498798765");
 });
 
 test("Should build passport with cid", () => {
     var rawInput = "cid:657"
     var result = sut.buildPassport(rawInput);
-    expect(result.cid).toBe(657);
+    expect(result.cid).toBe("657");
 });
 
 test("Should build passport with multiple values", () => {
     var rawInput = "cid:657 pid:129387"
     var result = sut.buildPassport(rawInput);
-    expect(result.cid).toBe(657);
-    expect(result.pid).toBe(129387);
+    expect(result.cid).toBe("657");
+    expect(result.pid).toBe("129387");
 });
 
 test("Should be valid passport with all attributes", () => {

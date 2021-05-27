@@ -1,14 +1,13 @@
 const fs = require('fs');
 const Day4 = require("./day4");
-console.log("Hello");
 
+var day4 = new Day4();
 var rawInput = fs.readFileSync('./input.txt', 'utf8');
-var rows = Day4.readAndSplitInput(rawInput);
-// get raw passport rows
-// build array of passports
-// var count = 0;
-// foreach check isValidPassport
-// count++;
-console.log(`Number of rows: ${rows.length}`);
+var rows = day4.readAndSplitInput(rawInput);
 
-console.log(`Solution across all 5: ${total}`);
+var passports = rows.map(it => day4.buildPassport(it));
+console.log(`Number of passports: ${passports.length}`);
+
+var count = passports.filter(it => day4.isValidPassport(it)).length;
+
+console.log(`Number of valid passports: ${count}`);
