@@ -1,8 +1,4 @@
-class Passport {
-    constructor(passportString){
-    }
-}
-
+const Passport = require("./passport");
 class Day4 {
     birthYear = 'byr';
     issueYear = 'iyr';
@@ -13,7 +9,8 @@ class Day4 {
     passportId = 'pid';
     countryId = 'cid';
 
-    constructor() {}
+
+    constructor() { }
 
     // count number of valid passports
 
