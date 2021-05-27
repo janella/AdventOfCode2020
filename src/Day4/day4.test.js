@@ -67,67 +67,67 @@ test("Should build passport with multiple values", () => {
 
 test("Should be valid passport with all attributes", () => {
     var passport = createValidPassport();
-    expect(sut.isValidPassport(passport)).toBe(true);
+    expect(passport.isValid()).toBe(true);
 });
 
 test("Should be valid passport with no cid attribute", () => {
     var passport = createValidPassport();
     passport.cid = null;
-    expect(sut.isValidPassport(passport)).toBe(true);
+    expect(passport.isValid()).toBe(true);
 });
 
 test("Should not be valid passport when missing byr attribute", () => {
     var passport = createValidPassport();
     passport.byr = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing iyr attribute", () => {
     var passport = createValidPassport();
     passport.iyr = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing eyr attribute", () => {
     var passport = createValidPassport();
     passport.eyr = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing hgt attribute", () => {
     var passport = createValidPassport();
     passport.hgt = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing hcl attribute", () => {
     var passport = createValidPassport();
     passport.hcl = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing ecl attribute", () => {
     var passport = createValidPassport();
     passport.ecl = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 test("Should not be valid passport when missing pid attribute", () => {
     var passport = createValidPassport();
     passport.pid = null;
-    expect(sut.isValidPassport(passport)).toBe(false);
+    expect(passport.isValid()).toBe(false);
 });
 
 
 function createValidPassport() {
     var passport = new Passport();
-    passport.byr = '123'
-    passport.iyr = '123'
-    passport.eyr = '123'
-    passport.hgt = '123'
-    passport.hcl = '123'
-    passport.ecl = '123'
-    passport.pid = '123'
-    passport.cid = '123'
+    passport.byr = '1956'
+    passport.iyr = '2016'
+    passport.eyr = '2020'
+    passport.hgt = '155cm'
+    passport.hcl = '#ab6547'
+    passport.ecl = 'grn'
+    passport.pid = '123456789'
+    passport.cid = 'NZL'
     return passport;
 }
