@@ -1,11 +1,10 @@
 class Passport {
     constructor(passportString) {
-        var tokens = row.split(' ').map(it => it.split(':'));
+        var tokens = passportString.split(' ').map(it => it.split(':'));
         tokens.forEach(it => {
             this[it[0]] = it[1];
         });
     }
-
 
     isValid() {
         return this.isByrValid()
@@ -18,33 +17,63 @@ class Passport {
     }
 
     isByrValid() {
-        // 4 digits, 1920 < x < 2002        
+        var value = parseInt(this.byr);
+        return 1920 <= value && value <= 2002;
     }
 
     isIyrValid() {
-        // 4 digits, 2010 < x < 2020        
+        var value = parseInt(this.iyr);
+        return 2010 <= value && value <= 2020;
     }
 
     isEyrValid() {
-        // 4 digits, 2020 < x <2030
+        var value = parseInt(this.eyr);
+        return 2020 <= value && value <= 2030;
     }
 
     isHgtValid() {
-        // split cm/in suffix, validate int
-        // if cm, 150 < x < 193
-        // if in, 59 < x < 76
+        var regex = new RegExp("(?<val>[0-9]+)(?<unit>cm|in)");
+        var height = regex.exec(this.hgt);
+        if (height) {
+            var heightVal = parseInt(height.groups.val);
+            if (height.groups.unit == 'cm') {
+                return 150 <= heightVal && heightVal <= 193;
+            }
+            if (height.groups.unit == 'in') {
+                return 59 <= heightVal && heightVal <= 76;
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 
     isHclValid() {
-        // prefix #, six characters 0-9 or a-f. regex
+        var regex = new RegExp("^[#]([0-9a-f]{6})$");
+        var match = regex.exec(this.hcl);
+        if (match) {
+            return true;
+        }
+        return false;
     }
 
     isEclValid() {
-        // amb | blu | brn | gry | grn | hzl | oth
+        return this.ecl == 'amb'
+            || this.ecl == 'blu'
+            || this.ecl == 'brn'
+            || this.ecl == 'gry'
+            || this.ecl == 'grn'
+            || this.ecl == 'hzl'
+            || this.ecl == 'oth';
     }
 
     isPidValid() {
-        // 9 digits, including leading 0s
+        var regex = new RegExp("^([0-9]{9})$");
+        var match = regex.exec(this.pid);
+        if (match) {
+            return true;
+        }
+        return false;
     }
 }
 

@@ -12,55 +12,55 @@ test("Should split empty lines", () => {
 
 test("Should build passport with byr", () => {
     var rawInput = "byr:1987"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.byr).toBe("1987");
 });
 
 test("Should build passport with iyr", () => {
     var rawInput = "iyr:2020"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.iyr).toBe("2020");
 });
 
 test("Should build passport with eyr", () => {
     var rawInput = "eyr:2029"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.eyr).toBe("2029");
 });
 
 test("Should build passport with hgt", () => {
     var rawInput = "hgt:168cm"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.hgt).toBe('168cm');
 });
 
 test("Should build passport with hcl", () => {
     var rawInput = "hcl:blk"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.hcl).toBe('blk');
 });
 
 test("Should build passport with ecl", () => {
     var rawInput = "ecl:gry"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.ecl).toBe('gry');
 });
 
 test("Should build passport with pid", () => {
     var rawInput = "pid:65498798765"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.pid).toBe("65498798765");
 });
 
 test("Should build passport with cid", () => {
     var rawInput = "cid:657"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.cid).toBe("657");
 });
 
 test("Should build passport with multiple values", () => {
     var rawInput = "cid:657 pid:129387"
-    var result = sut.buildPassport(rawInput);
+    var result = new Passport(rawInput);
     expect(result.cid).toBe("657");
     expect(result.pid).toBe("129387");
 });
@@ -118,16 +118,7 @@ test("Should not be valid passport when missing pid attribute", () => {
     expect(passport.isValid()).toBe(false);
 });
 
-
 function createValidPassport() {
-    var passport = new Passport();
-    passport.byr = '1956'
-    passport.iyr = '2016'
-    passport.eyr = '2020'
-    passport.hgt = '155cm'
-    passport.hcl = '#ab6547'
-    passport.ecl = 'grn'
-    passport.pid = '123456789'
-    passport.cid = 'NZL'
+    var passport = new Passport("pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980 hcl:#623a2f cid:NZL");
     return passport;
 }
